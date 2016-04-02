@@ -1,0 +1,54 @@
+/**
+ * Created by Brendon on 4/2/2016
+ * no documentation for code at this time
+ */
+public class MoveMaker {
+
+        int[][] game = new int[4][4];
+        int[][] result = new int[4][4];
+
+
+        public int[][] moveLeft(int[][] game){
+            for(int i = 0; i < 4;i++){
+                int moves=0;
+                for(int j = 0; j<3;j++){
+                    if(game[i][j]==game[i][j+1]){
+                        game[i][j]=game[i][j]*2;
+                        game[i][j]=0;
+                    }
+                    if(game[i][j]==0 && game[i][j+1]>0){
+                        game[i][j]=game[i][j+1];
+                        game[i][j+1]=0;
+                    }
+                }
+            }
+            return game;
+        }
+
+        public int[][] moveUp(int[][] game){
+            for(int i = 0; i < 4;i++){
+                for(int j = 0; j<4;j++){
+
+                }
+            }
+            return game;
+        }
+
+    public int[][] moveRight(int[][] game){
+            for(int i = 0; i < 4;i++){
+                for(int j = 4; j>0;j--){
+
+                }
+            }
+        return game;
+        }
+
+    public int[][] moveDown(int[][] game){
+            for(int i = 0; i < 4;i++){
+                for(int j = 4; j>0;j--){
+
+                }
+            }
+        return game;
+    }
+}
