@@ -1,0 +1,65 @@
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import java.util.ArrayList;
+
+/**
+ * Created by Brendon on 4/1/2016.
+ * no comments or javadoc, will probably add when project is finished
+ */
+public class GameViewer {
+
+    public static void main(String[] args){
+
+        JFrame frame = new JFrame();
+        JPanel panel = new JPanel();
+        int[][] game = new int[4][4];
+        ArrayList<Tiles> tiles = new ArrayList<Tiles>();
+
+        frame.setTitle("2048");
+        frame.setSize(600,400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JButton left = new JButton("Left");
+        JButton right = new JButton("Right");
+        JButton up = new JButton("Up");
+        JButton down = new JButton("Down");
+
+
+        class ButtonListenerLeft implements ActionListener{
+
+            public void actionPerformed(ActionEvent e){
+
+            }
+        }
+
+        class ButtonListenerRight implements ActionListener{
+
+            public void actionPerformed(ActionEvent e){
+
+            }
+        }
+
+        class ButtonListenerUp implements ActionListener{
+
+            public void actionPerformed(ActionEvent e){
+
+            }
+        }
+
+        class ButtonListenerDown implements ActionListener{
+
+            public void actionPerformed(ActionEvent e){
+
+            }
+        }
+
+        Tiles tile1 = new Tiles(50, 50);
+        panel.add(tile1);
+
+        frame.add(panel);
+        frame.setVisible(true);
+    }
+}
