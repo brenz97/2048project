@@ -1,5 +1,5 @@
 # 2048project
-attempt at making the popular game known as 2048
+###attempt at making the popular game known as 2048
 
 GameViewer ; handles the frame and buttons
 
