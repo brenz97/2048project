@@ -1,33 +1,86 @@
-/**
- * Created by Brendon on 4/2/2016
- * no documentation for code at this time
- */
 public class MoveMaker {
 
-        int[][] game = new int[4][4];
-        int[][] result = new int[4][4];
+        int[][] game;
+        int position = 0;
+        int move=0;
 
+        public MoveMaker(int[][] g){
+            game = g;
+        }
 
         public int[][] moveLeft(int[][] game){
             for(int i = 0; i < 4;i++){
-                int moves=0;
+                position = 0;
+                move=0;
                 for(int j = 0; j<3;j++){
-                    if(game[i][j]==game[i][j+1]){
-                        game[i][j]=game[i][j]*2;
-                        game[i][j]=0;
+
+                    if(game[i][j]>0){
+                        for(int k = j+1;k<4;k++){
+                            if(k>3){
+                                int tmp = game[i][k];
+                                game[i][k] = 0;
+                                game[i][position] = tmp;
+                                move=1;
+                            }
+                            else if(game[i][k]==game[i][j]){
+                                int tmp = game[i][j];
+                                game[i][j]=0;
+                                game[i][k]=0;
+                                game[i][position]=tmp*2;
+                                move=1;
+                                break;
+                            }
+                        }
+                        if(move==0){
+                            int tmp = game[i][j];
+                            game[i][j]=0;
+                            game[i][position]=tmp;
+                        }
+
+                        move=0;
+                        position++;
+
                     }
-                    if(game[i][j]==0 && game[i][j+1]>0){
-                        game[i][j]=game[i][j+1];
-                        game[i][j+1]=0;
-                    }
+
                 }
             }
             return game;
         }
 
         public int[][] moveUp(int[][] game){
+
             for(int i = 0; i < 4;i++){
+                position = 0;
+                move=0;
                 for(int j = 0; j<4;j++){
+
+                    if(game[j][i]>0){
+                        for(int k = j+1;k<4;k++){
+                            if(k<0){
+                                int tmp = game[i][k];
+                                game[k][i] = 0;
+                                game[position][i] = tmp;
+                                move=1;
+                            }
+                            else if(game[i][k]==game[i][j]){
+                                int tmp = game[i][j];
+                                game[j][i]=0;
+                                game[k][i]=0;
+                                game[position][i]=tmp*2;
+                                move=1;
+                                break;
+                            }
+                        }
+                        if(move==0){
+                            int tmp = game[i][j];
+                            game[j][i]=0;
+                            game[position][i]=tmp;
+                        }
+
+                        move=0;
+                        position++;
+
+                    }
 
                 }
             }
@@ -36,7 +89,37 @@ public class MoveMaker {
 
     public int[][] moveRight(int[][] game){
             for(int i = 0; i < 4;i++){
-                for(int j = 4; j>0;j--){
+                position = 3;
+                move=0;
+                for(int j = 3; j>0;j--){
+
+                    if(game[i][j]>0){
+                        for(int k = j+1;k<4;k--){
+                            if(k<0){
+                                int tmp = game[i][k];
+                                game[i][k] = 0;
+                                game[i][position] = tmp;
+                                move=1;
+                            }
+                            else if(game[i][k]==game[i][j]){
+                                int tmp = game[i][j];
+                                game[i][j]=0;
+                                game[i][k]=0;
+                                game[i][position]=tmp*2;
+                                move=1;
+                                break;
+                            }
+                        }
+                        if(move==0){
+                            int tmp = game[i][j];
+                            game[i][j]=0;
+                            game[i][position]=tmp;
+                        }
+
+                        move=0;
+                        position--;
+
+                    }
 
                 }
             }
@@ -45,10 +128,41 @@ public class MoveMaker {
 
     public int[][] moveDown(int[][] game){
             for(int i = 0; i < 4;i++){
-                for(int j = 4; j>0;j--){
+                position = 3;
+                move=0;
+                for(int j = 3; j>0;j--){
+
+                    if(game[j][i]>0){
+                        for(int k = j-1;k<4;k--){
+                            if(k>3){
+                                int tmp = game[i][k];
+                                game[k][i] = 0;
+                                game[position][i] = tmp;
+                                move=1;
+                            }
+                            else if(game[k][i]==game[j][i]){
+                                int tmp = game[j][i];
+                                game[j][i]=0;
+                                game[k][i]=0;
+                                game[position][i]=tmp*2;
+                                move=1;
+                                break;
+                            }
+                        }
+                        if(move==0){
+                            int tmp = game[j][i];
+                            game[j][i]=0;
+                            game[position][i]=tmp;
+                        }
+
+                        move=0;
+                        position--;
+
+                    }
 
                 }
             }
         return game;
     }
+
 }
