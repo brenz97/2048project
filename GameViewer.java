@@ -1,12 +1,13 @@
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JComponent;
+import javax.swing.JMenuBar;
+import java.awt.BorderLayout;
 
 /**
  * Created by Brendon on 4/1/2016.
@@ -14,12 +15,15 @@ import javax.swing.JComponent;
  */
 public class GameViewer {
 
+    static int[][] game = new int[4][4];
+
     public static void main(String[] args){
 
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
-        int[][] game = new int[4][4];
+        JMenuBar menuBar = new JMenuBar();
         MoveMaker moveMaker = new MoveMaker(game);
+        Randomizer random = new Randomizer();
         ArrayList<Tiles> tiles = new ArrayList<Tiles>();
         Random placeTwo = new Random();
 
@@ -33,38 +37,63 @@ public class GameViewer {
         JButton right = new JButton("Right");
         JButton up = new JButton("Up");
         JButton down = new JButton("Down");
+        JButton start = new JButton("Start");
 
         panel.add(left);
         panel.add(right);
         panel.add(up);
         panel.add(down);
+        panel.add(start);
         frame.add(panel, BorderLayout.SOUTH);
 
         class ButtonListenerLeft implements ActionListener{
 
             public void actionPerformed(ActionEvent e){
-                moveMaker.moveLeft(game);
+                game = moveMaker.moveLeft(game);
+                game = random.insertTwo(game);
+                random.print(game);
+                frame.repaint();
             }
         }
 
         class ButtonListenerRight implements ActionListener{
 
             public void actionPerformed(ActionEvent e){
-                moveMaker.moveRight(game);
+                game = moveMaker.moveRight(game);
+                game = random.insertTwo(game);
+                random.print(game);
+                frame.repaint();
             }
         }
 
         class ButtonListenerUp implements ActionListener{
 
             public void actionPerformed(ActionEvent e){
-                moveMaker.moveUp(game);
+                game = moveMaker.moveUp(game);
+                game = random.insertTwo(game);
+                random.print(game);
+                frame.repaint();
             }
         }
 
         class ButtonListenerDown implements ActionListener{
 
             public void actionPerformed(ActionEvent e){
-                moveMaker.moveDown(game);
+                game = moveMaker.moveDown(game);
+                game = random.insertTwo(game);
+                random.print(game);
+                frame.repaint();
+
+            }
+        }
+
+        class ButtenListenerStart implements ActionListener{
+
+            public void actionPerformed(ActionEvent e){
+                game = random.Start(game);
+                game = random.insertTwo(game);
+                random.print(game);
+                frame.repaint();
             }
         }
 
@@ -76,6 +105,8 @@ public class GameViewer {
         up.addActionListener(moveUp);
         ActionListener moveDown = new ButtonListenerDown();
         down.addActionListener(moveDown);
+        ActionListener startButton = new ButtenListenerStart();
+        start.addActionListener(startButton);
 
         Tiles tile0 = new Tiles(200, 75);
         tiles.add(tile0);
@@ -115,6 +146,5 @@ public class GameViewer {
 
         JComponent component = new FrameComponent(tiles, game);
         frame.add(component);
-
     }
 }
